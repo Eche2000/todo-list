@@ -33,7 +33,8 @@ function renderItems() {
     .map(({ _id, title, isCompleted }) => {
       return `
         <li class= ${isCompleted && "checked"}>${title}
-            <i class=" edit fa-regular fa-pen-to-square" onclick="editMode(${_id}"></i>
+            <i class="complete fa-solid fa-check" onclick="check(${_id})"></i>
+            <i class=" edit fa-regular fa-pen-to-square" onclick="editMode(${_id})"></i>
             <i class=" far fa-solid fa-trash" onclick="deleteTodo(${_id})"></i>
         </li> `;
     })
@@ -42,16 +43,7 @@ function renderItems() {
   console.log(displayItems);
 }
 
-// Todo: Deleting the list
-function deleteTodo(todoId) {
-  const deleteAll = todoDBInstance.filter(({ _id }) => id !== todoId);
-  localStorage.setItem(todoKeys, JSON.stringify(deleteAll));
-}
 
-// Add event listener
-// document.querySelector(".addBtn").addEventListener("click", addItems);
-
-//Update Function
 
 const editMode = (_id) => {
   const todo = todoDBInstance.find((todo) => todo._id === _id);
@@ -70,15 +62,45 @@ function updateTodoTitle() {
   const updatedTodoDB = todoDBInstance.map((todo) =>
     todo._id === _id ? todoToUpdate : todo
   );
-  localStorage.setItem(todoDBName, JSON.stringify(updatedTodoDB));
+  localStorage.setItem(todoKeys, JSON.stringify(updatedTodoDB));
+  pageReload();
+};
+
+// Todo: Deleting the lists
+function deleteTodo(todoId) {
+  const updatedTodoDB = todoDBInstance.filter(({ _id }) => _id !== todoId);
+  localStorage.setItem(todoKeys, JSON.stringify(updatedTodoDB));
   pageReload();
 }
 
-// Delete Function
-function deleteTodo(todoId) {
-  const updatedTodoDB = todoDBInstance.filter(({ _id }) => _id !== todoId);
-  localStorage.setItem(todoDBName, JSON.stringify(updatedTodoDB));
-  pageReload();
+// todo Completed
+function check(todoKeys) {
+  // findIndex is an array method that returns the position of an element
+  // in the array.
+  const index = todoDBInstance.find(({ _id }) => _id == todoKeys);
+  // Locate the todo item in the todoItems array and set its checked
+  // property to the opposite. That means, `true` will become `false` and vice
+  // versa.
+  // todoItems[index].checked = !todoItems[index].checked;
+  // renderTodo(todoItems[index]);
+  if (index.isCompleted === false){
+   
+
+    index.isCompleted = true
+  
+} else
+ {
+   
+    index.isCompleted = false
+    
+}
+console.log(index.isCompleted)
+
+
+const updatedTodoDB = todoDBInstance.map((todoList) => todoList._id === todoKeys ? index : todoList);  
+localStorage.setItem(todoKeys, JSON.stringify(updatedTodoDB));
+renderItems();
+// console.log(updatedTodoDB)
 }
 
 // EventListeners
@@ -86,4 +108,4 @@ addBtn.addEventListener("click", addItems);
 editBtn.addEventListener("click", updateTodoTitle);
 
 // invoke
-// renderTodoItems();
+renderItems();

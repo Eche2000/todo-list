@@ -13,7 +13,7 @@
                                      rgba(29, 223, 253, 0.617) 50%, 
                                      rgb(69, 176, 252) 100%);
   padding: 30px 40px;
-  color: white;
+  color: rgb(41, 0, 51);
   text-align: center;
 }
 
@@ -25,7 +25,7 @@ h1 {
 
 input {
   width: 75%;
-  margin-right: 0;
+  margin: 0;
   padding: 10px;
   border: none;
   font-size: 14px;
@@ -33,9 +33,11 @@ input {
 }
 
 .addBtn {
-  /* width: 50%; */
-  padding: 10px 50px;
-  margin-left:0;
+  width: 5%;
+  padding: 10px;
+  margin: 0;
+  position: absolute;
+  right: 150px;
   background: rgb(164, 87, 215);
   color: #fff;
   text-align: center;
@@ -54,9 +56,12 @@ input {
 }
 
 .editBtn {
-  /* width: 50%; */
-  padding: 10px 50px;
-  margin-left:0;
+  width: 5%;
+  display: none;
+  padding: 10px;
+  position: absolute;
+  right: 150px;
+  top: 75px;
   background: rgb(215, 87, 104);
   color: #fff;
   text-align: center;
@@ -72,6 +77,8 @@ input {
   background-color:rgb(176, 70, 84);
   color: #FFF;
 }
+
+
 
 
 /* Style the list items */
@@ -135,7 +142,7 @@ ul li.checked::before {
   position: absolute;
   right: 0;
   top: 0;
-  padding: 12px 16px 16px 16px;
+  padding: 12px 16px 15px 16px;
 }
 
 .far:hover {
@@ -148,10 +155,22 @@ ul li.checked::before {
   position: absolute;
   right: 50px;
   top: 0;
-  padding: 12px 16px 16px 16px;
+  padding: 12px 16px 15px 16px;
 }
 
 .edit:hover {
   background-color: rgb(71, 203, 255);
+  color: white;
+}
+
+.complete {
+  position: absolute;
+  right: 100px;
+  top: 0;
+  padding: 12px 16px 15px 16px;
+}
+
+.complete:hover {
+  background-color: rgb(0, 198, 99);
   color: white;
 }
